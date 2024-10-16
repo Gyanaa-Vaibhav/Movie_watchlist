@@ -15,10 +15,17 @@ console.log(x[2])
 console.log(x[3])
 console.log(x.includes(5))
 
+// JSON.parse(localStorage.getItem("watchlist"));
+if (!(JSON.parse(localStorage.getItem("watchlist")))) {
+    let watchList = []
+} else {
+    watchList = JSON.parse(localStorage.getItem("watchlist"));
+}
 
 
 // Calls the getMovieList Function
 searchBtn.addEventListener("click", getMovieList)
+// movieListWatchLater.addEventListener('click',renderList(movieListWatchLater,watchList))
 
 //Searches for the given string
 async function getMovieList() {
@@ -32,33 +39,38 @@ async function getMovieList() {
 
     const response = await fetch(url)
     const data = await response.json()
-    const movieList = data.Search
+    const x = data.Search
     
     // Resetting the Old data
     moviesData = [];
 
     // New Array because the present one does not return all the necessary information like time and plot
-    movieList.forEach((a) => moviesData.push(a))
+    x.forEach((a) => moviesData.push(a))
 
     // Rendering the output
-    renderList()
+    renderList(movieLists,moviesData)
 }
 
 
-
-function renderList() {
+//  Renders the Content
+function renderList(list,place) {
     // Reset the movieList DOM
-    movieLists.innerHTML = '';
+    list.innerHTML = '';
 
     // Removes the "Start Exploring Page"
     placeHolder.style.display = 'none'
 
     // Adds the list of movies
-    moviesData.forEach((a) => {
+    place.forEach((a) => {
+
+        // Gets the Movies using the imdbID
         fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a.imdbID}`)
           .then((response) => response.json())
             .then((data) => {
                 console.log(data);
+                
+                movieLists.style.display = 'grid'
+                // Manipulating the DOM
                 movieLists.innerHTML +=
                 `
                 <div class="movie">
@@ -87,11 +99,32 @@ function renderList() {
 }
 
 
+//  Responsible for adding the clicked items to watchlist used whole event
 movieLists.addEventListener("click", (e) => {
+    console.log(e.target.id)
     const id = e.target.id
+
+    // Gets the button to manipulate change and disable after adding
     const btn = document.getElementById(id)
+
+    // Changes the Plus to tick mark SVG
+    btn.previousElementSibling.innerHTML =
+    `
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
+    <path d="M 12 1 C 5.9375 1 1 5.9375 1 12 C 1 18.0625 5.9375 23 12 23 C 18.0625 23 23 18.0625 23 12 C 23 5.9375 18.0625 1 12 1 Z M 12 3 C 16.980469 3 21 7.019531 21 12 C 21 16.980469 16.980469 21 12 21 C 7.019531 21 3 16.980469 3 12 C 3 7.019531 7.019531 3 12 3 Z M 17.40625 8.1875 L 11 14.5625 L 7.71875 11.28125 L 6.28125 12.71875 L 10.28125 16.71875 L 11 17.40625 L 11.71875 16.71875 L 18.8125 9.59375 Z"></path>
+    </svg>
+    `;
     btn.innerHTML = "Done"
     btn.disabled = true;
     btn.style.cursor = "auto";
+
+    
+    // Checks and adds (does not allow duplicates)
     !(watchList.includes(id)) && watchList.push(e.target.id)
+    localStorage.setItem("watchlist",JSON.stringify(watchList))
 })
+
+// const xz = setInterval(() => {
+//         console.log("ok")
+//         localStorage.setItem("watchlist2", JSON.stringify(watchList));
+//     }, 1000);

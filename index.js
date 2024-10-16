@@ -30,11 +30,11 @@ searchBtn.addEventListener("click", getMovieList)
 //Searches for the given string
 async function getMovieList() {
     //Default ULR
-    let url = `http://www.omdbapi.com/?apikey=a8013152&s=${searchBar.value}`;
+    let url = `https://www.omdbapi.com/?apikey=a8013152&s=${searchBar.value}`;
 
     if (!(filmType.value == "all")) {
       // URL with specified Movie or Series or episode
-      url = `http://www.omdbapi.com/?apikey=a8013152&s=${searchBar.value}&type=${filmType.value}`;
+      url = `https://www.omdbapi.com/?apikey=a8013152&s=${searchBar.value}&type=${filmType.value}`;
     }
 
     const response = await fetch(url,{referrerPolicy:"unsafe-url"}

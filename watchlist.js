@@ -18,7 +18,7 @@ if (JSON.parse(localStorage.getItem("watchlist"))) {
     moviesData.forEach((a) => {
       // Gets the Movies using the imdbID
       console.log(a);
-      fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a}`)
+      fetch(`https://www.omdbapi.com/?apikey=a8013152&i=${a}`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data);

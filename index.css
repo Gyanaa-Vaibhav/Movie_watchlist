@@ -199,3 +199,14 @@ hr{
     color: black;
 }
 
+.details .title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+}
+
+.title svg{
+    width: 20px;
+    height: 20px;
+}

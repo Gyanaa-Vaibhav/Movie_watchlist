@@ -37,7 +37,8 @@ async function getMovieList() {
       url = `http://www.omdbapi.com/?apikey=a8013152&s=${searchBar.value}&type=${filmType.value}`;
     }
 
-    const response = await fetch(url)
+    const response = await fetch(url,{referrerPolicy:"unsafe-url"}
+    )
     const data = await response.json()
     const x = data.Search
     
@@ -64,15 +65,16 @@ function renderList(list,place) {
     place.forEach((a) => {
 
         // Gets the Movies using the imdbID
-        fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a.imdbID}`)
+        fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a.imdbID}`, {
+          referrerPolicy: "unsafe-url",
+        })
           .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                
-                movieLists.style.display = 'grid'
-                // Manipulating the DOM
-                movieLists.innerHTML +=
-                `
+          .then((data) => {
+            console.log(data);
+
+            movieLists.style.display = "grid";
+            // Manipulating the DOM
+            movieLists.innerHTML += `
                 <div class="movie">
                     <img src="${data.Poster}" id="poster" alt="">
                     <div class="details">
@@ -94,7 +96,7 @@ function renderList(list,place) {
                 </div>
                 <hr>
                 `;
-            });
+          });
     })
 }
 

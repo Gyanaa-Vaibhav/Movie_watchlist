@@ -1,0 +1,189 @@
+body,h1,p,a{
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    color: white;
+}
+
+/* 
+----------
+    NAV
+----------
+ */
+
+nav{
+    display: flex;
+    background: linear-gradient( rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65) ), url('./images/background.jpg');
+    background-position: 10% 25%;
+    background-size: cover;
+    height: 208px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h1{
+    font-size: 2.6rem;
+}
+
+a{
+    font-size: 0.875rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 
+------------
+    Main
+------------
+*/
+
+.inputArea{
+    margin-top: -20px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+select{
+    height: 39px; 
+    border: 1px solid grey;   
+}
+
+input{
+    border-radius: 10px 0 0 10px;
+    border: 1px solid grey;
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    width: 360px;
+    height: 38.5px;
+}
+
+button{
+    border-radius: 0 10px 10px 0;
+    border: 1px solid grey;
+    margin: 0;
+    font-size: 0.875rem;
+    width: 120px;
+    height: 39px;
+    cursor:pointer;
+}
+
+
+/* 
+-----------------
+    Placeholder
+-----------------
+ */
+
+#placeholder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 208px);
+}
+
+#placeholder svg{
+    width: 70px;
+    height: 61px;
+}
+
+#placeholder p{
+    margin-top: 5px;
+    font-size: 1.125rem;
+    color: #DFDDDD;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+
+/* 
+-----------------
+    Movie List
+-----------------
+*/
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#movieList{
+    display: grid;
+    gap: 10px;
+    margin-top: 50px;
+    width: 480px;
+}
+
+.movie{
+    display: flex;
+    align-items: center;
+}
+
+.movie img{
+    height: 150px;
+    width: 100px;
+}
+
+/* 
+-----------------
+    Categories
+-----------------
+*/
+
+.cat{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.cat button{
+    color: #6B7280;
+    background-color: white;
+    border: none;
+    padding: 0;
+    height: auto;
+    width: auto;
+    margin-left: -15px;
+    font-size: 0.9rem;
+}
+
+.cat svg{
+    fill: black;
+    height: 18px;
+    width: 18px;
+}
+
+span{
+    margin-left: auto;
+}
+
+hr{
+    width: 416px;
+    border: 1.25px solid #E5E7EB;
+}
+
+/* 
+-----------------
+    Details
+-----------------
+*/
+
+.details{
+    margin-left: 20px;
+}
+
+.details p{
+    color: #6B7280;
+    font-size: 0.9rem;
+}
+
+.details h3{
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: black;
+}
+

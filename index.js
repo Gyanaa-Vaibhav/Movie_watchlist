@@ -1,19 +1,14 @@
-const searchBar = document.getElementById("searchBar")
-const poster = document.getElementById("poster");
-const movieLists = document.getElementById("movieList")
-const searchBtn = document.getElementById("searchBtn");
-const filmType = document.getElementById("filmType");
-const placeHolder = document.getElementById("placeholder");
+const getEleByID = element => document.getElementById(element);
+
+const searchBar = getEleByID("searchBar")
+const poster = getEleByID("poster");
+const movieLists = getEleByID("movieList")
+const searchBtn = getEleByID("searchBtn");
+const filmType = getEleByID("filmType");
+const placeHolder = getEleByID("placeholder");
+
 let moviesData = []
 let watchList = []
-
-let x = [1, 2, 3, 4]
-console.log(x.length)
-console.log(x[0])
-console.log(x[1])
-console.log(x[2])
-console.log(x[3])
-console.log(x.includes(5))
 
 // JSON.parse(localStorage.getItem("watchlist"));
 if (!(JSON.parse(localStorage.getItem("watchlist")))) {
@@ -54,7 +49,7 @@ async function getMovieList() {
 
 
 //  Renders the Content
-function renderList(list,place) {
+export function renderList(list,place) {
     // Reset the movieList DOM
     list.innerHTML = '';
 
@@ -132,3 +127,4 @@ movieLists.addEventListener("click", (e) => {
 //         console.log("ok")
 //         localStorage.setItem("watchlist2", JSON.stringify(watchList));
 //     }, 1000);
+

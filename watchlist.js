@@ -1,13 +1,14 @@
+// import { renderList as RL } from "./index.js";
+
+
 const movieLists = document.getElementById("movieList");
 const moviesData = JSON.parse(localStorage.getItem('watchlist'))
 const placeHolder = document.getElementById("placeholder");
 const clearDB = document.getElementById("clear")
-// moviesData.forEach((a)=>console.log(a))
 
-// renderList()
 
 if (JSON.parse(localStorage.getItem("watchlist"))) {
-    renderList()
+  renderList()
 }
   function renderList() {
     // Reset the movieList DOM

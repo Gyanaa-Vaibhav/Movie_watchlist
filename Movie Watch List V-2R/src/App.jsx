@@ -46,15 +46,24 @@ function App() {
       return
     } else {
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=a8013152&t=${search.name}`
+        `http://www.omdbapi.com/?apikey=a8013152&s=${search.name}`
       );
       const data = await res.json();
-      console.log("Movie Data", data);
-      setMoviesData([data]);
+
+      // console.log("Data", data.Search)
+      
+
+      
+      setMoviesData((prev) => {
+        const imdbID = data.Search.map((movie) => movie.imdbID);
+        // console.log("imdbID", imdbID);
+        return[imdbID]
+      });
+      
       setMovieWatchList([data])
     }
-    }
-  
+
+  }
   
 
   return (

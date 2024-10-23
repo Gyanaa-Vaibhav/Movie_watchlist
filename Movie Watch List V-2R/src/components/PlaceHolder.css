@@ -1,0 +1,31 @@
+/* 
+-----------------
+    Placeholder
+-----------------
+ */
+
+#placeholder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 208px);
+}
+
+#placeholder h2{
+    color: #DFDDDD;
+    word-spacing: 5px;
+}
+
+#placeholder svg{
+    width: 70px;
+    height: 61px;
+}
+
+#placeholder p{
+    margin-top: 5px;
+    font-size: 1.125rem;
+    color: black;
+    font-weight: bold;
+    line-height: 20px;
+}

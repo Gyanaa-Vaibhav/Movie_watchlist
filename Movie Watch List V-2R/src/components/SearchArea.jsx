@@ -3,10 +3,10 @@ import './SearchArea.css'
 
 function SearchArea(props) {
     // console.log("From Search Area", props.handleclick);
+
   return (
     <>
       <form className="inputArea">
-        
         <input
           name="name"
           type="text"
@@ -15,16 +15,15 @@ function SearchArea(props) {
           value={props.search.name}
           onChange={props.handleclick}
         />
-        
-        <select name="type" 
-            id="filmType" 
-            onChange={props.handleclick}
-        >
+
+        <select name="type" id="filmType" onChange={props.handleclick}>
           <option value="all">All</option>
           <option value="movie">Movie</option>
           <option value="series">Series</option>
         </select>
-        <button id="searchBtn">Search</button>
+        <button onClick={props.fetchMovie} id="searchBtn">
+          Search
+        </button>
       </form>
     </>
   );

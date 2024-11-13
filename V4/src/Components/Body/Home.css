@@ -1,0 +1,103 @@
+main{
+    display: flex;
+    margin: 3em 0 0 0;
+    padding: 5em 6em 0;
+    align-items: center;
+    flex-direction: column;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: calc(100vh - 80px - 48px);
+    background-image: url("/background.jpg");
+    font-family: var(--secondary-font),sans-serif;
+}
+
+.title{
+    margin: 0;
+    font-weight: 100;
+    font-size: var(--48px);
+    color: var(--primary-color);
+}
+
+.desc{
+    margin: 1em 0;
+    font-weight: 100;
+    text-align: left;
+    font-size: var(--20px);
+    color: var(--primary-color);
+    font-family: var(--primary-font),sans-serif;
+}
+
+.cta button{
+    gap: 0.3em;
+    display: flex;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    align-items: center;
+    transition: all 0.2s;
+    font-size: var(--20px);
+    color: var(--primary-color);
+    background-color: var(--background-color);
+    font-family: var(--primary-font),sans-serif;
+}
+
+.cta button svg{
+    width: 24px;
+    height: 24px;
+    transition: all 0.1s;
+    fill: var(--primary-color);
+}
+
+.cta button:hover{
+    scale: 1.1;
+    color: #000000;
+    background-color: #dcdcdc;
+    transform: translateX(6px);
+}
+
+.cta button:hover svg{
+    scale: 1.1;
+    fill: #000000;
+    transform: translateX(6px);
+}
+
+.cta button:active{
+    transform: translateX(6px) translateY(4px);
+}
+
+.cta button:hover a{
+    color: black;
+}
+
+@media screen and (max-width: 650px){
+
+    .title{
+        text-align: center;
+        font-size: var(--36px);
+    }
+
+    .desc{
+        text-align: center;
+        font-size: var(--16px);
+    }
+
+    .cta button{
+        margin: 0 auto;
+        font-size: var(--16px);
+    }
+
+    .cta button:active{
+        scale: 1.1;
+    }
+
+    .cta button:hover{
+        scale: 1.05;
+        color: var(--primary-color);
+        transform: translateX(0) translateY(0);
+        background-color: #dcdcdc;
+    }
+
+    .cta button:hover svg{
+        fill: #000000;
+    }
+}

@@ -1,0 +1,18 @@
+:root{
+    --primary-font: "Gabarito";
+    --secondary-font: "Alata";
+    --primary-color: #FFFFFF;
+    --background-color: #414141;
+    --hover-color: #B7B7B7;
+    --64px: 4rem;
+    --48px: 3rem;
+    --36px: 2.25rem;
+    --32px: 2rem;
+    --24px: 1.5rem;
+    --20px: 1.25rem;
+    --16px: 1rem;
+}
+
+body{
+    margin: 0;
+}

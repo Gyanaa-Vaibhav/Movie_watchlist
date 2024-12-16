@@ -8,9 +8,7 @@ export default function FetchList(name){
     const url = `https://www.omdbapi.com/?apikey=a8013152`
 
     useEffect(() => {
-
         if(isError) return;
-        // setLoading(true)
 
         const fetchData = async () => {
             try {

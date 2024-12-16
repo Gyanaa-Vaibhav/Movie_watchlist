@@ -11,7 +11,6 @@ export default function FetchDetails(id){
         fetch(url+'&i='+id)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 // return data
                 return (MovieCard({
                     name:data.Title,

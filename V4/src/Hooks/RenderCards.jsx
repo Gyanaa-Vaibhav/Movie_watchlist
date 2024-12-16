@@ -20,7 +20,6 @@ export default function RenderCards({data}){
 
     useEffect(() => {
         setTimeout(() => {
-            console.log("Loader",loader)
             setLoader(false)
         },1000)
     }, []);

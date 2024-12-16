@@ -100,7 +100,6 @@ export function renderList(list,place) {
 
 //  Responsible for adding the clicked items to watchlist used whole event
 movieLists.addEventListener("click", (e) => {
-    console.log(e.target.id)
     const id = e.target.id
 
     // Gets the button to manipulate change and disable after adding

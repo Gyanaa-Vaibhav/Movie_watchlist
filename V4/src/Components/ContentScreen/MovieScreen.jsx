@@ -11,7 +11,47 @@ export default function MovieScreen(){
     const [movieData,setMovieData] = useState([])
     const [loading,setLoading] = useState(false);
     const [moviesNotFound,setMoviesNotFound] = useState(false);
+    const [searchList , setSearchList] = useState([])
+    const [showSearch,setShowSearch] = useState(false);
     let movieCard = []
+
+    // Fetch to Load the list of movies
+    useEffect(() => {
+        if(!ready) {
+            setSearchList([])
+            async function getfetch() {
+                const res = await fetch(`https://www.omdbapi.com/?apikey=a8013152&s=${search}&p=1`);
+                const data = await res.json();
+                if (data.Search) {
+                    data.Search.map(d => {
+                        const movie = (
+                            <div onClick={() => {
+                                setSearch(d.Title)
+                                setShowSearch(false);
+                                setReady(true);
+                                setIsReady(true);
+                            }} className='search-element' key={d.imdbID}>
+                                <h3>{d.Title}</h3>
+                                <p>{d.Year} - {d.Type.slice(0, 1).toLocaleUpperCase()}{d.Type.slice(1)}</p>
+                            </div>
+                        )
+                        if (searchList.length < 10) {
+                            setSearchList(prev => [movie, ...prev])
+                        }
+                    })
+                }
+            }
+
+            if (movieCard.length <= 0 ) {
+                getfetch()
+                setShowSearch(true);
+            }
+            if(moviesNotFound === true){
+                setShowSearch(false);
+            }
+        }
+
+    }, [search]);
 
     // is the input ready to be searched?
     const [ready, setReady] = React.useState(false);
@@ -24,19 +64,21 @@ export default function MovieScreen(){
 
     // Fetching data from the API
     useEffect(() => {
+        setShowSearch(false);
             if (ready) {
+                setShowSearch(false);
                 setLoading(true);
                 setReady(false);
+                console.log(search)
                 fetch(`https://www.omdbapi.com/?apikey=a8013152&s=${search}`)
                     .then((response) => response.json())
                     .then((data) => {
-
+                        console.log(data)
                         if(data.Response === "False"){
                             setLoading(false);
                             setMoviesNotFound(true)
                             return
                         }
-
                         setMoviesNotFound(false)
                         data.Search.forEach(a => {
                             imdbId.push(a.imdbID);
@@ -44,13 +86,14 @@ export default function MovieScreen(){
                         });
                     });
             }
-        },[ready, search])
+        },[ready])
 
     useEffect(() => {
         setTimeout(() => {
             if (moviesList.length > 0 && isReady) {
                 moviesList.forEach((a) => {
-                    setIsReady(false)
+                    setIsReady(false);
+                    setShowSearch(false);
                     setSearch((a) => ({ ...a, isReady: false }));
                     fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a}`, {
                         referrerPolicy: "unsafe-url",
@@ -88,12 +131,13 @@ export default function MovieScreen(){
     return(
         <>
             <Nav/>
-            <div className='screen'>
+            <div onClick={()=> setShowSearch(false)} className='screen'>
                 <form className='search'
                       onSubmit={e => {
                           e.preventDefault()
                           setSearch(inputRef.current.value)
                           setReady(true)
+                          setShowSearch(false);
                           setIsReady(true)
                       }}
                 >
@@ -108,6 +152,7 @@ export default function MovieScreen(){
                     <input onInput={(e) => {
                         setSearch(e.target.value)
                     }}
+                           onClick={()=>setShowSearch(true)}
                            ref={inputRef}
                            type="text"
                            name="movie"
@@ -115,6 +160,9 @@ export default function MovieScreen(){
                            placeholder='Search for a Movie'
                            autoComplete={'off'}
                     />
+                    {showSearch &&
+                        <div className='searchList'>{searchList}</div>
+                    }
                 </form>
 
 

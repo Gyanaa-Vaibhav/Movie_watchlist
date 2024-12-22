@@ -9,6 +9,7 @@
 }
 
 .search{
+    position: relative;
     width: 70%;
     height: 20px;
     display: flex;
@@ -165,4 +166,44 @@
 /* Optional: Hide the "not found" message when not needed */
 .hidden {
     display: none;
+}
+
+.searchList{
+    z-index: 1000;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    font-family: var(--primary-font), serif;
+    width: 100%;
+    position: absolute;
+    top:35px;
+    left: 0;
+    padding: 0.5rem 1rem 0;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchList h3, .searchList p{
+    font-weight: 500;
+    margin: 0;
+}
+
+.searchList p{
+    font-weight: normal;
+    font-size: 0.925rem;
+}
+
+.search-element{
+    padding: 0.5em 1rem;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.search-element:hover{
+    background-color: #676767;
+    transform: scale(1.05);
+}
+
+.search-element:active{
+    transform: scale(1);
 }

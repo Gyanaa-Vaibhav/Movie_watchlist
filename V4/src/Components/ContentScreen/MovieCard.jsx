@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 export default function MovieCard({name,year,poster,rating,plot}){
 
     return(
-        <>
-            <div className="card">
-                <div className="img">
-                    <img className='img' src={poster} alt={name + year + 'Poster'} />
-                </div>
-                <div className="info">
-                    <h2 className="movie_name">{name}</h2>
-                    <div className="rating">
+        <div key={name} className="card">
+            <div className="img">
+                <img className='img' src={poster} alt={name + year + 'Poster'} />
+            </div>
+            <div className="info">
+                <h2 className="movie_name">{name}</h2>
+                <p>{year}</p>
+                <div className="rating">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
                             <path
                                 d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z"
@@ -19,10 +19,10 @@ export default function MovieCard({name,year,poster,rating,plot}){
                         </svg>
                         <p>{rating}</p>
                     </div>
-                    <div className="desc">
-                        <p>{plot}</p>
-                    </div>
-                    <div className='watchlist'>
+                <div className="desc">
+                    <p>{plot}</p>
+                </div>
+                <div className='watchlist'>
                         <svg xmlns="http://www.w3.org/2000/svg" height="20px" width="20px" viewBox="0 -960 960 960"
                              fill="#FFFFFF">
                             <path
@@ -30,9 +30,8 @@ export default function MovieCard({name,year,poster,rating,plot}){
                         </svg>
                         <p>Add to WatchList</p>
                     </div>
-                </div>
             </div>
-        </>
+        </div>
     )
 }
 

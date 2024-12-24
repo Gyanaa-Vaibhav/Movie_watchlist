@@ -6,6 +6,7 @@
     background-color: black;
     min-height: calc(100vh - 70px);
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 140px minmax(200px, 350px);
 }
 
 .search{
@@ -20,6 +21,11 @@
     align-items: center;
     border-radius: 0.5em;
     background-color: var(--background-color);
+}
+
+.info p{
+    margin: 0;
+    font-weight: lighter;
 }
 
 .search button{

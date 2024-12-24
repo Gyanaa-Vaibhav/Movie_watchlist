@@ -1,0 +1,11 @@
+.highest-grossing{
+    gap: 20px;
+    display: grid;
+    padding: 70px 3em;
+    margin-top: 2rem;
+    min-width: 100vh;
+    grid-auto-rows: auto;
+    background-color: black;
+    min-height: calc(100vh - 70px);
+    grid-template-columns: 1fr 1fr;
+}

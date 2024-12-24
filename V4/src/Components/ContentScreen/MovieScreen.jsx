@@ -19,7 +19,8 @@ export default function MovieScreen(){
     useEffect(() => {
         if(!ready) {
             setSearchList([])
-            async function getfetch() {
+            setShowSearch(true);
+            async function getFetch() {
                 const res = await fetch(`https://www.omdbapi.com/?apikey=a8013152&s=${search}&p=1`);
                 const data = await res.json();
                 if (data.Search) {
@@ -30,6 +31,8 @@ export default function MovieScreen(){
                                 setShowSearch(false);
                                 setReady(true);
                                 setIsReady(true);
+                                imdbId.push(d.imdbID);
+                                setMoviesList(imdbId);
                             }} className='search-element' key={d.imdbID}>
                                 <h3>{d.Title}</h3>
                                 <p>{d.Year} - {d.Type.slice(0, 1).toLocaleUpperCase()}{d.Type.slice(1)}</p>
@@ -43,8 +46,7 @@ export default function MovieScreen(){
             }
 
             if (movieCard.length <= 0 ) {
-                getfetch()
-                setShowSearch(true);
+                getFetch()
             }
             if(moviesNotFound === true){
                 setShowSearch(false);
@@ -69,11 +71,9 @@ export default function MovieScreen(){
                 setShowSearch(false);
                 setLoading(true);
                 setReady(false);
-                console.log(search)
                 fetch(`https://www.omdbapi.com/?apikey=a8013152&s=${search}`)
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log(data)
                         if(data.Response === "False"){
                             setLoading(false);
                             setMoviesNotFound(true)
@@ -89,30 +89,47 @@ export default function MovieScreen(){
         },[ready])
 
     useEffect(() => {
-        setTimeout(() => {
-            if (moviesList.length > 0 && isReady) {
-                moviesList.forEach((a) => {
-                    setIsReady(false);
-                    setShowSearch(false);
-                    setSearch((a) => ({ ...a, isReady: false }));
+        if (moviesList.length > 0 && isReady) {
+            const fetchMovieData = async () => {
+                setIsReady(false);
+                setShowSearch(false);
+                setSearch((prev) => ({ ...prev, isReady: false }));
+
+                const moviePromises = moviesList.map((a) =>
                     fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a}`, {
                         referrerPolicy: "unsafe-url",
                     })
                         .then((response) => response.json())
-                        .then((data) => {
-                            let x = (MovieCard({
-                                name:data.Title,
-                                year:data.Year,
-                                poster:data.Poster,
-                                rating:data.Ratings[0].Value,
-                                plot:data.Plot,
-                            }))
-                            movieCard.push(x)
-                        })
-                })
-            }
-        }, 1000)
-    })
+                        .then((data) =>
+                            MovieCard({
+                                name: data.Title,
+                                year: data.Year,
+                                poster: data.Poster,
+                                rating: data.Ratings[0]?.Value || "No Ratings",
+                                plot: data.Plot,
+                            })
+                        )
+                );
+
+                // Wait for all movies to be fetched and created
+                const movieCards = await Promise.all(moviePromises);
+
+                // Update the movieCard array once
+                movieCards.forEach((card) => movieCard.push(card));
+
+                console.log(movieCard);
+            };
+
+            // Call the function with a delay
+            const timeoutId = setTimeout(() => {
+                fetchMovieData();
+            }, 1000);
+
+            // Cleanup function for timeout
+            return () => clearTimeout(timeoutId);
+        }
+    }, [moviesList, isReady]);
+
 
     setTimeout(()=>{
         if(moviesNotFound){
@@ -152,7 +169,7 @@ export default function MovieScreen(){
                     <input onInput={(e) => {
                         setSearch(e.target.value)
                     }}
-                           onClick={()=>setShowSearch(true)}
+                           // onClick={()=>setShowSearch(true)}
                            ref={inputRef}
                            type="text"
                            name="movie"

@@ -1,8 +1,8 @@
 import React ,{ useState } from 'react'
-import DisplayMovies from './components/DisplayMovies'
-import Nav from './components/Nav'
-import SearchArea from './components/SearchArea'
-import PlaceHolder from './components/PlacerHolder'
+import DisplayMovies from './components/DisplayMovies.jsx'
+import Nav from './components/Nav.jsx'
+import SearchArea from './components/SearchArea.jsx'
+import PlaceHolder from './components/PlacerHolder.jsx'
 import './App.css'
 
 function App() {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Everything from './components/Everything'
+import Everything from './components/Everything.jsx'
 import './App.css'
 
 function App() {

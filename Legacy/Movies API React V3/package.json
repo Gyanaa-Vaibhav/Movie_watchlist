@@ -1,12 +1,12 @@
 {
-  "name": "movie-watch-list-v-2r",
+  "name": "movies-api-react-v3",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+    "lint": "eslint ",
     "preview": "vite preview"
   },
   "dependencies": {

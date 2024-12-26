@@ -12,7 +12,7 @@ body,h1,p,a{
 
 nav{
     display: flex;
-    background: linear-gradient( rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65) ), url('./images/background.jpg');
+    background: linear-gradient( rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65) ), url('images/background.jpg');
     background-position: 10% 25%;
     background-size: cover;
     height: 208px;

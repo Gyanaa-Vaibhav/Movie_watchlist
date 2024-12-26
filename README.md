@@ -1,7 +1,8 @@
-# API Project
+# React + Vite
 
-## The api being used is OMDb API
-https://www.omdbapi.com/
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Overview of app
-This is used to search your favourite movies and then save them in a watchlist you can access anytime thanks to localstorage not everytime still looking into that tho
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

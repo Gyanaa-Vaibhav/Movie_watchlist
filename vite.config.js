@@ -8,7 +8,7 @@ export default defineConfig({
     port: 5173,
   },
   build:{
-    outDir: '/var/www/html/Movie_Watchlist',
+    outDir: './build',
     emptyOutDir: true,
   },
   plugins: [react()],

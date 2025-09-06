@@ -58,7 +58,7 @@ function Everything() {
                     // console.log("IN MOVIESLIST ---------")
                     setSearch((a) => ({ ...a, isReady: false }));
                     document.getElementById("movies").innerHTML = '';
-                    fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a}`, {
+                    fetch(`https://www.omdbapi.com/?apikey=a8013152&i=${a}`, {
                         referrerPolicy: "unsafe-url",
                     })
                         .then((response) => response.json())

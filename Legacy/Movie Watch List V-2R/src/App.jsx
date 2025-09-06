@@ -46,7 +46,7 @@ function App() {
       return
     } else {
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=a8013152&s=${search.name}`
+        `https://www.omdbapi.com/?apikey=a8013152&s=${search.name}`
       );
       const data = await res.json();
 

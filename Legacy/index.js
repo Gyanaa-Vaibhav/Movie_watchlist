@@ -60,7 +60,7 @@ export function renderList(list,place) {
     place.forEach((a) => {
 
         // Gets the Movies using the imdbID
-        fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a.imdbID}`, {
+        fetch(`https://www.omdbapi.com/?apikey=a8013152&i=${a.imdbID}`, {
           referrerPolicy: "unsafe-url",
         })
           .then((response) => response.json())

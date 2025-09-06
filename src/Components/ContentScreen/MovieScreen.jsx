@@ -96,7 +96,7 @@ export default function MovieScreen(){
                 setSearch((prev) => ({ ...prev, isReady: false }));
 
                 const moviePromises = moviesList.map((a) =>
-                    fetch(`http://www.omdbapi.com/?apikey=a8013152&i=${a}`, {
+                    fetch(`https://www.omdbapi.com/?apikey=a8013152&i=${a}`, {
                         referrerPolicy: "unsafe-url",
                     })
                         .then((response) => response.json())

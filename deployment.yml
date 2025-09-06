@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie
+  namespace: movie
+  labels:
+    app: movie
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie
+
+  template:
+    metadata:
+      name: movie
+      labels:
+        app: movie
+
+    spec:
+      containers:
+        - name: host
+          image: registry.gyanaavaibhav.in/movie:v1
+          imagePullPolicy: Always
+
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie
+  namespace: movie
+spec:
+  selector:
+    app: movie
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: movie
+  namespace: movie
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    nginx.ingress.kubernetes.io/proxy-real-ip-cidr: "0.0.0.0/0"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: movie.gyanaavaibhav.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: movie
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - movie.gyanaavaibhav.in
+      secretName: movie-tls
